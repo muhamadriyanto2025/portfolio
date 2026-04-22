@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-brands/css/uicons-brands.css'>
-  <title>Website Portfolio</title>
-  <link href="./output.css" rel="stylesheet">
+  <title>Website Portfolio Tailwind CSS</title>
+  <link href="./src/output.css" rel="stylesheet">
 </head>
 <body>
 
@@ -14,15 +14,41 @@
         <div class="container">
             <div class="flex items-center justify-between relative">
                 <div class="px-4">
-                    <a href="#home" class="font-bold text-lg text-teal-500 block py-6">Muhamad Riyanto</a>
+                    <a href="#home" class="font-bold text-lg text-teal-500 block py-6 lg:pl-15">Muhamad Riyanto</a>
                 </div>
 
                 <div class="flex items-center px-4">
-                    <button id="hamburger" class="block absolute right-4" name="hamburger" type="button">
+                    <button id="hamburger" class="block absolute right-4 lg:hidden" name="hamburger" type="button">
                         <span class="w-[30px] h-[2px] my-2 block bg-slate-900"></span>
                         <span class="w-[30px] h-[2px] my-2 block bg-slate-900"></span>
                         <span class="w-[30px] h-[2px] my-2 block bg-slate-900"></span>
                     </button>
+
+                    <!-- nav -->
+                    <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
+                        <ul class="block lg:flex">
+                            <li class="group">
+                                <a href="#home" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Home</a>
+                            </li>
+                            <li class="group">
+                                <a href="#about" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Tentang Saya</a>
+                            </li>
+                            <li class="group">
+                                <a href="#portfolio" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Portfolio</a>
+                            </li>
+                            <li class="group">
+                                <a href="#clients" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Clients</a>
+                            </li>
+                            <li class="group">
+                                <a href="#blog" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Blog</a>
+                            </li>
+                             <li class="group">
+                                <a href="#contact" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- nav end -->
                 </div>
             </div>
         </div>
@@ -99,7 +125,7 @@
     </section>
     <!-- about section end -->
 
-    <script src="../dist/img/js/script.js"></script>
+    <script src="./dist/js/script.js"></script>
    
 </body>
 </html>

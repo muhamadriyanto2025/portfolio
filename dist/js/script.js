@@ -1,8 +1,11 @@
 // hamburger
 const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
 
  hamburger.addEventListener('click', function () {
     hamburger.classList.toggle('hamburger-active');
+    navMenu.classList.toggle('hidden');
+
 });
 
 // navbar fixed
@@ -16,4 +19,3 @@ window.onscroll = function () {
         header.classList.remove('navbar-fixed');
     }               
 };
-console.log(header);
