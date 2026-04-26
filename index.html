@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,43 +7,49 @@
   <title>Website Portfolio Tailwind CSS</title>
   <link href="./src/output.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-white transition duration-300">
 
     <!-- header start -->
-    <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10">        
+    <header class="dark:text-white dark:bg-transparent bg-transparent absolute top-0 left-0 w-full flex items-center z-10">        
         <div class="container">
             <div class="flex items-center justify-between relative">
                 <div class="px-4">
-                    <a href="#home" class="font-bold text-lg text-teal-500 block py-6 lg:pl-15">Muhamad Riyanto</a>
+                    <a href="#home" class="font-bold text-lg text-teal-500 block py-6 lg:pl-15 ">Muhamad Riyanto</a>
                 </div>
 
                 <div class="flex items-center px-4">
                     <button id="hamburger" class="block absolute right-4 lg:hidden" name="hamburger" type="button">
-                        <span class="w-[30px] h-[2px] my-2 block bg-slate-900"></span>
-                        <span class="w-[30px] h-[2px] my-2 block bg-slate-900"></span>
-                        <span class="w-[30px] h-[2px] my-2 block bg-slate-900"></span>
+                        <span class="w-[30px] h-[2px] my-2 block bg-slate-900 dark:bg-amber-50"></span>
+                        <span class="w-[30px] h-[2px] my-2 block bg-slate-900 dark:bg-amber-50"></span>
+                        <span class="w-[30px] h-[2px] my-2 block bg-slate-900 dark:bg-amber-50"></span>
                     </button>
 
                     <!-- nav -->
-                    <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
-                        <ul class="block lg:flex">
+                    <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-slate-900 dark:text-white dark:shadow-gray-800">
+                        <!-- dark mode toggle -->
+                        
+                        <ul class="block lg:flex dark:bg-transparent">
+                            <button id="theme-toggle" class="ml-4 text-xl">
+                                <span id="icon-light" class="text-shadow-xl hover:opacity-80">☀️</span>
+                                <span id="icon-dark" class="hidden text-shadow-xl hover:opacity-80">🌙</span>
+                            </button>
                             <li class="group">
-                                <a href="#home" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Home</a>
+                                <a href="#home" class="dark:text-white text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Home</a>
                             </li>
                             <li class="group">
-                                <a href="#about" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Tentang Saya</a>
+                                <a href="#about" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out dark:text-white">Tentang Saya</a>
                             </li>
                             <li class="group">
-                                <a href="#portfolio" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Portfolio</a>
+                                <a href="#portfolio" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out dark:text-white">Portfolio</a>
                             </li>
                             <li class="group">
-                                <a href="#clients" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Clients</a>
+                                <a href="#clients" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out dark:text-white">Clients</a>
                             </li>
                             <li class="group">
-                                <a href="#blog" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Blog</a>
+                                <a href="#blog" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out dark:text-white">Blog</a>
                             </li>
                              <li class="group">
-                                <a href="#contact" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out">Contact</a>
+                                <a href="#contact" class="text-base text-slate-900 font-medium py-2 mx-8 flex group-hover:text-teal-500 transition duration-300 ease-in-out dark:text-white">Contact</a>
                             </li>
                         </ul>
                     </nav>
@@ -62,9 +68,9 @@
             <div class="flex flex-wrap">
                 <div class="width-full self-center px-4 lg:w-1/2 lg:pl-24">
                     <h1 class="text-base font-semibold text-teal-500 md:text-xl lg:text-2xl">Halo Semua &#128075; Saya 
-                        <span class="block font-black text-slate-900 text-4xl mt-1 lg:text-5xl">Muhamad Riyanto</span></h1>
-                    <h2 class="font-medium text-slate-500"><span  class="text-slate-900 lg:text-2xl">Fullstack Developer</span> | Calisthenics & Home Workout Trainer</h2>
-                    <p class="font-medium text-slate-400 leading-relaxed">Pegiat Ngoding, <span class="text-slate-900 font-bold">Calisthenics Enthusiast</span>  dan Seorang Content Creator.</p>
+                        <span class="dark:text-white block font-black text-slate-900 text-4xl mt-1 lg:text-5xl">Muhamad Riyanto</span></h1>
+                    <h2 class="font-medium text-slate-500"><span  class="text-slate-900 lg:text-2xl dark:text-white">Fullstack Developer</span> | Calisthenics & Home Workout Trainer</h2>
+                    <p class="font-medium text-slate-400 leading-relaxed dark:text-white">Pegiat Ngoding, <span class="text-slate-900 font-bold dark:text-white">Calisthenics Enthusiast</span>  dan Seorang Content Creator.</p>
                     <a href="#" class="inline-block py-3 px-6 bg-teal-500 text-white font-medium rounded-lg mt-5 hover:bg-teal-600 transition duration-300 ease-in-out">hubungi saya
                     </a>
                 </div>
@@ -89,13 +95,13 @@
     <section id="about" class="pt-36 pb-32">
         <div class="container">
             <div class="flex flex-wrap">
-                <div class="w-full px-4 mb-10 px-10 lg:w-1/2 md:w-1/2">
-                    <h4 class="font-bold uppercase text-lg text-teal-500 mb-3 pl-10 md:pl-5">Tentang Saya</h4>
-                    <h2 class="font-bold text-3xl text-slate-900 mb-4 px-4 lg:text-4xl">2 Tahun diWeb Programming,8 Tahun Di Calisthenics dan 3 Tahun Sebagai Trainer</h2>
-                    <p class="lg:w-lg md:pl-5 text-base font-medium text-slate-500 px-4">Saya adalah seorang Fullstack Developer dengan pengalaman dalam mengembangkan aplikasi web menggunakan berbagai teknologi seperti HTML, CSS, JavaScript, dan framework seperti React dan Node.js. Selain itu, saya juga memiliki minat yang besar dalam dunia Calisthenics dan Home Workout, di mana saya aktif berbagi konten terkait kebugaran dan gaya hidup sehat melalui platform media sosial.</p>
+                <div class="w-full px-4 mb-10 px-10 lg:w-1/2 md:w-1/2 ">
+                    <h4 class="font-bold uppercase text-lg text-teal-500 mb-3 pl-10 md:pl-5 dark:text-white">Tentang Saya</h4>
+                    <h2 class="dark:text-white font-bold text-3xl text-slate-900 mb-4 px-4 lg:text-4xl">2 Tahun diWeb Programming,8 Tahun Di Calisthenics dan 3 Tahun Sebagai Trainer</h2>
+                    <p class="lg:w-lg md:pl-5 text-base font-medium text-slate-500 px-4 ">Saya adalah seorang Fullstack Developer dengan pengalaman dalam mengembangkan aplikasi web menggunakan berbagai teknologi seperti HTML, CSS, JavaScript, dan framework seperti React dan Node.js. Selain itu, saya juga memiliki minat yang besar dalam dunia Calisthenics dan Home Workout, di mana saya aktif berbagi konten terkait kebugaran dan gaya hidup sehat melalui platform media sosial.</p>
                 </div>
                 <div class="w-full mt-5 lg:w-1/2 md:pl-5 md:w-1/2 pl-10">
-                    <h3 class="font-semibold text-2xl text-slate-900 mb-4 px-4 lg:text-4xl lg:pt-8">Mari Berteman, Berkolaborasi</h3>
+                    <h3 class="font-semibold text-2xl text-slate-900 mb-4 px-4 lg:text-4xl lg:pt-8 dark:text-white">Mari Berteman, Berkolaborasi</h3>
                     <p class="text-base font-medium text-slate-500 px-4 mb-6 lg:text-lg">Saya selalu terbuka untuk berkolaborasi, berbagi pengetahuan, atau sekadar bertukar pikiran. Jangan ragu untuk menghubungi saya melalui media sosial atau email. Saya senang bertemu dengan orang-orang baru dan membangun jaringan yang kuat dalam industri teknologi dan kebugaran.</p>
                     <div class="flex items-center px-4">
                         <!-- youtube -->
@@ -130,12 +136,12 @@
     <!-- about section end -->
 
     <!-- portfolio section start -->
-    <section id="portfolio" class="pt-36 pb-16 bg-slate-100">
+    <section id="portfolio" class="pt-36 pb-16 bg-slate-100 dark:bg-slate-800 dark:text-white">
         <div class="container mx-auto">  
             <div class="w-full px-4">
                 <div class="max-w-xl mx-auto text-center mb-16">
-                    <h4 class="font-bold uppercase text-lg text-teal-500 mb-3">Portfolio</h4>
-                    <h2 class="font-bold text-3xl text-slate-900 mb-4 px-4 lg:text-5xl sm:text-4xl">Beberapa Project Yang Pernah Saya Kerjakan</h2>
+                    <h4 class="font-bold uppercase text-lg text-teal-500 mb-3 dark:text-teal-400">Portfolio</h4>
+                    <h2 class="dark:text-white font-bold text-3xl text-slate-900 mb-4 px-4 lg:text-5xl sm:text-4xl">Beberapa Project Yang Pernah Saya Kerjakan</h2>
                     <p class="lg:w-lg text-base font-medium text-slate-500 px-4 lg:mx-auto md:text-lg">Berikut adalah beberapa proyek yang pernah saya kerjakan, baik dalam bidang web programming maupun dalam dunia Calisthenics dan Home Workout. Proyek-proyek ini mencerminkan keahlian saya dalam mengembangkan aplikasi web serta dedikasi saya dalam berbagi pengetahuan tentang kebugaran dan gaya hidup sehat.</p>
                 </div> 
             </div>
@@ -145,7 +151,7 @@
                     <div class="rounded-md shadow-md overflow-hidden mb-5">
                         <img src="dist/img/1.png" alt="Project 1" class="w-full h-auto">
                         <div class="p-4">
-                            <h3 class="font-bold text-xl text-slate-900 mb-2">Aplikasi Aplikasi Serbaguna Gratis</h3>
+                            <h3 class="font-bold text-xl text-slate-900 mb-2 dark:text-white">Aplikasi Aplikasi Serbaguna Gratis</h3>
                             <p class="text-base font-medium text-slate-500">Deskripsi : Aplikasi ini menyediakan berbagai fitur yang berguna untuk kebutuhan sehari-hari Anda.</p>
                         </div>
                     </div>
@@ -157,7 +163,7 @@
                     <div class="rounded-md shadow-md overflow-hidden mb-5">
                         <img src="dist/img/2.png" alt="Project 1" class="w-full h-auto">
                         <div class="p-4">
-                            <h3 class="font-bold text-xl text-slate-900 mb-2">E-Commerce Website</h3>
+                            <h3 class="font-bold text-xl text-slate-900 mb-2 dark:text-white">E-Commerce Website</h3>
                             <p class="text-base font-medium text-slate-500">Deskripsi : Website e-commerce yang memungkinkan pengguna untuk menjual dan membeli produk secara online.</p>
                         </div>
                     </div>
@@ -167,7 +173,7 @@
                     <div class="rounded-md shadow-md overflow-hidden mb-5">
                         <img src="dist/img/3.png" alt="Project 1" class="w-full h-auto">
                         <div class="p-4">
-                            <h3 class="font-bold text-xl text-slate-900 mb-2">Aplikasi Pengelolaan Data</h3>
+                            <h3 class="font-bold text-xl text-slate-900 mb-2 dark:text-white">Aplikasi Pengelolaan Data</h3>
                             <p class="text-base font-medium text-slate-500">Deskripsi : Aplikasi ini dirancang untuk membantu pengguna dalam mengelola dan menganalisis data secara efisien.</p>
                         </div>
                     </div>
@@ -177,7 +183,7 @@
                     <div class="rounded-md shadow-md overflow-hidden mb-5">
                         <img src="dist/img/4.png" alt="Project 1" class="w-full h-auto">
                         <div class="p-4">
-                            <h3 class="font-bold text-xl text-slate-900 mb-2">Aplikasi IOT seperti Assisten AI Pribadi seperti Jarvis</h3>
+                            <h3 class="font-bold text-xl text-slate-900 mb-2 dark:text-white">Aplikasi IOT seperti Assisten AI Pribadi seperti Jarvis</h3>
                             <p class="text-base font-medium text-slate-500">Deskripsi : Aplikasi ini dirancang untuk memberikan pengalaman pengguna yang lebih baik melalui integrasi teknologi IOT dan kecerdasan buatan.</p>
                         </div>
                     </div>
@@ -230,13 +236,13 @@
     <!-- end client -->
 
     <!-- blog -->
-    <section id="blog" class="pt-36 pb-32 bg-slate-100">
+    <section id="blog" class="pt-36 pb-32 bg-slate-100 dark:bg-slate-800 dark:text-white">
         <div class="container mx-auto">
             <div class="w-full px-4">
                  <div class="mx-auto text-center mb-16">
                     <h4 class="font-bold uppercase text-lg text-teal-500 mb-3">Blog</h4>
-                    <h2 class="font-bold text-3xl text-slate-900 mb-4 px-4 sm:text-4xl lg:text-5xl">Artikel Terkini</h2>
-                    <p class="lg:w-lg text-base font-medium text-slate-500 px-4 lg:mx-auto">Berikut adalah beberapa artikel terkini yang saya tulis, baik dalam Event yang pernah saya ikuti maupun dalam bidang web programming maupun dalam dunia Calisthenics dan Home Workout. Artikel-artikel ini mencerminkan keahlian saya dalam mengembangkan aplikasi web serta dedikasi saya dalam berbagi pengetahuan tentang kebugaran dan gaya hidup sehat.</p>
+                    <h2 class="font-bold text-3xl text-slate-900 mb-4 px-4 sm:text-4xl lg:text-5xl dark:text-white">Artikel Terkini</h2>
+                    <p class="lg:w-lg text-base font-medium text-slate-500 px-4 lg:mx-auto dark:text-gray-300">Berikut adalah beberapa artikel terkini yang saya tulis, baik dalam Event yang pernah saya ikuti maupun dalam bidang web programming maupun dalam dunia Calisthenics dan Home Workout. Artikel-artikel ini mencerminkan keahlian saya dalam mengembangkan aplikasi web serta dedikasi saya dalam berbagi pengetahuan tentang kebugaran dan gaya hidup sehat.</p>
                 </div> 
             </div>
 
@@ -306,7 +312,7 @@
             </div>
 
             <div class="w-full px-4">
-                <form action="#" method="POST" class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-8">
+                <form action="#" method="POST" class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-8 dark:bg-slate-800">
                     <div class="mb-6">
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
                         <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-teal-500 focus:border-teal-500">
@@ -406,7 +412,7 @@
                             <svg role="img" class="fill-current" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
                          </a>
                     </div>
-                    <p class="text-sm mt-5">Copyright &copy; 2024 - All Rights Reserved. Designed By <a href="https://www.tiktok.com/@calisagustus2023" class="text-teal-500 hover:text-teal-600 transition duration-300 ease-in-out" target="_blank"> Muhamad Riyanto</a></p>
+                    <p class="text-sm mt-5 text-amber-50">Copyright &copy; 2026 - All Rights Reserved. Dibuat oleh : <a href="https://www.tiktok.com/@calisagustus2023" class="text-teal-500 hover:text-teal-600 transition duration-300 ease-in-out" target="_blank"> Muhamad Riyanto</a> dengan Tailwind CSS</p>
             </div>
         </div>
     </footer>
