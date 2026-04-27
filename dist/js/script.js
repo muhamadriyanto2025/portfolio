@@ -12,6 +12,7 @@ const navMenu = document.getElementById('nav-menu');
 window.onscroll = function () {
     const header = document.querySelector('header');
     const fixedNav = header.offsetTop;
+    
 
     if (window.pageYOffset > fixedNav) {
         header.classList.add('navbar-fixed');
@@ -52,4 +53,65 @@ document.addEventListener('DOMContentLoaded', function () {
       iconLight.classList.add('hidden');
     }
   });
+});
+
+// contact form
+
+const form = document.querySelector("form");
+const notif = document.getElementById("notif");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const button = form.querySelector("button");
+  button.innerText = "Mengirim...";
+  button.disabled = true;
+
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value,
+  };
+
+  try {
+    const res = await fetch("http://localhost:3000/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    notif.classList.remove("hidden");
+
+    // reset warna dulu
+    notif.classList.remove("bg-green-500", "bg-red-500");
+
+    if (res.ok) {
+      notif.classList.add("bg-green-500");
+      notif.innerText = "✅ Pesan berhasil dikirim!";
+    } else {
+      notif.classList.add("bg-red-500");
+      notif.innerText = "❌ Gagal mengirim pesan!";
+    }
+
+    // hilang otomatis
+    setTimeout(() => {
+      notif.classList.add("hidden");
+    }, 3000);
+
+    form.reset();
+
+  } catch (err) {
+    notif.classList.remove("hidden");
+    notif.classList.add("bg-red-500");
+    notif.innerText = "❌ Error koneksi!";
+
+    setTimeout(() => {
+      notif.classList.add("hidden");
+    }, 3000);
+  }
+
+  button.innerText = "Kirim Pesan";
+  button.disabled = false;
 });
