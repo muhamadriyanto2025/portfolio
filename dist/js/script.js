@@ -141,34 +141,90 @@ window.addEventListener("scroll", () => {
 });
 
 // musik
-const btn = document.getElementById("voiceBtn");
 const music = document.getElementById("music");
+const statusText = document.getElementById("voice-status");
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-if (!SpeechRecognition) {
-  alert("Browser tidak support voice 😢");
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+  statusText.innerText = "Browser tidak support voice 😢";
 } else {
   const recognition = new SpeechRecognition();
+
   recognition.lang = "id-ID";
+  recognition.continuous = true; // denger terus
+  recognition.interimResults = false;
 
-  btn.addEventListener("click", () => {
+  let isListening = false;
+
+  // 🚀 START setelah 1x klik
+  function startVoice() {
+    if (isListening) return;
+
     recognition.start();
-  });
+    isListening = true;
 
-  recognition.onresult = (event) => {
-    const text = event.results[0][0].transcript.toLowerCase();
-    console.log("Kamu bilang:", text);
+    statusText.innerText = "🎤 Voice aktif...";
+    console.log("Voice ON");
+  }
 
-    // 🎵 PLAY
-    if (text.includes("musik")) {
-      music.play();
-    }
+  // 👆 WAJIB: 1x interaksi user
+  document.body.addEventListener(
+    "click",
+    () => {
+      startVoice();
+    },
+    { once: true }
+  );
 
-    // 🛑 STOP
-    if (text.includes("stop")) {
-      music.pause();
-      music.currentTime = 0;
-    }
+  // 🎤 hasil suara
+ recognition.onresult = (event) => {
+  const text = event.results[event.results.length - 1][0].transcript.toLowerCase();
+
+  console.log("Kamu bilang:", text);
+  statusText.innerText = "🎤 " + text;
+
+  // STOP dulu
+  if (text.includes("stop")) {
+    music.pause();
+    music.currentTime = 0;
+
+    speak("Baik bos, musik dihentikan");
+    statusText.innerText = "⛔ Musik dihentikan";
+    return;
+  }
+
+  // PLAY
+  if (text.includes("musik")) {
+    music.play().catch(() => {
+      statusText.innerText = "⚠️ Klik dulu biar bisa play audio";
+    });
+
+    speak("Baik bos, musik dijalankan");
+    statusText.innerText = "🎵 Memutar musik...";
+  }
+};
+
+  // 🔁 auto restart kalau mati
+  recognition.onend = () => {
+    console.log("Restarting voice...");
+    recognition.start();
+  };
+
+  recognition.onerror = (err) => {
+    console.error("Voice error:", err);
   };
 }
+
+function speak(text) {
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "id-ID";
+  speech.rate = 1;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+
