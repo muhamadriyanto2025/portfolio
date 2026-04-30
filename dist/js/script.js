@@ -105,7 +105,7 @@ form.addEventListener("submit", async (e) => {
   } catch (err) {
     notif.classList.remove("hidden");
     notif.classList.add("bg-red-500");
-    notif.innerText = "❌ Error koneksi!";
+    notif.innerText = "kemungkinan server kami tidak aktif. Coba lagi nanti.";
 
     setTimeout(() => {
       notif.classList.add("hidden");
