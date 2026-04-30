@@ -115,3 +115,60 @@ form.addEventListener("submit", async (e) => {
   button.innerText = "Kirim Pesan";
   button.disabled = false;
 });
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 100; // offset biar pas
+    const sectionHeight = section.clientHeight;
+
+    if (window.pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("text-teal-500", "font-bold");
+
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("text-teal-500", "font-bold");
+    }
+  });
+});
+
+// musik
+const btn = document.getElementById("voiceBtn");
+const music = document.getElementById("music");
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (!SpeechRecognition) {
+  alert("Browser tidak support voice 😢");
+} else {
+  const recognition = new SpeechRecognition();
+  recognition.lang = "id-ID";
+
+  btn.addEventListener("click", () => {
+    recognition.start();
+  });
+
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript.toLowerCase();
+    console.log("Kamu bilang:", text);
+
+    // 🎵 PLAY
+    if (text.includes("musik")) {
+      music.play();
+    }
+
+    // 🛑 STOP
+    if (text.includes("stop")) {
+      music.pause();
+      music.currentTime = 0;
+    }
+  };
+}
