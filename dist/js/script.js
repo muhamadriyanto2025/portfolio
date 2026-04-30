@@ -180,29 +180,36 @@ const SpeechRecognition =
   );
 
   // 🎤 hasil suara
- recognition.onresult = (event) => {
-  const text = event.results[event.results.length - 1][0].transcript.toLowerCase();
+recognition.onresult = (event) => {
+  const text =
+    event.results[event.results.length - 1][0].transcript.toLowerCase();
 
   console.log("Kamu bilang:", text);
   statusText.innerText = "🎤 " + text;
 
-  // STOP dulu
+  // 🛑 STOP MUSIK
   if (text.includes("stop")) {
     music.pause();
     music.currentTime = 0;
 
     speak("Baik bos, musik dihentikan");
+
+    recognition.start(); // ✅ NYALAIN LAGI MIC
+
     statusText.innerText = "⛔ Musik dihentikan";
     return;
   }
 
-  // PLAY
+  // ▶️ PLAY MUSIK
   if (text.includes("musik")) {
+    recognition.stop(); // ❗ INI KUNCI UTAMA (MATIKAN MIC)
+
     music.play().catch(() => {
       statusText.innerText = "⚠️ Klik dulu biar bisa play audio";
     });
 
     speak("Baik bos, musik dijalankan");
+
     statusText.innerText = "🎵 Memutar musik...";
   }
 };
