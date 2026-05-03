@@ -1,18 +1,24 @@
 const form = document.querySelector('#loginForm');
 const errorText = document.getElementById('error');
 
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // kode biar ga reload halaman
-
+    if (localStorage.getItem("isLogin") !== "true") {
+    window.location.href = "login.html";
+    }
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-
+     
     if(email === "admin@gmail.com" && password === "123456") {
-        return window.location.href = "dashboard.html";
+        localStorage.setItem("isLogin", "true");
+        window.location.href = "dashboard/index.html";
     }else {
         errorText.innerText = "email atau password salah!";
         errorText.classList.remove("hidden");
     }
+
+    
 
 // try {
 //     const res = await fetch("http://localhost:3000/api/auth/login", {

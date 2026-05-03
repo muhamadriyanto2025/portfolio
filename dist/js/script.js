@@ -2,6 +2,7 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
+
  hamburger.addEventListener('click', function () {
     hamburger.classList.toggle('hamburger-active');
     navMenu.classList.toggle('hidden');
@@ -9,16 +10,28 @@ const navMenu = document.getElementById('nav-menu');
 });
 
 // navbar fixed
-window.onscroll = function () {
+const navlinks = document.querySelectorAll('.nav-link');
+window.onscroll = function() {
     const header = document.querySelector('header');
     const fixedNav = header.offsetTop;
     
 
     if (window.pageYOffset > fixedNav) {
+       // --- SAAT SCROLL KE BAWAH ---
         header.classList.add('navbar-fixed');
+        
+        navLinks.forEach(link => {
+            // 1. Tambah warna hitam (slate-800)
+            link.classList.add('text-slate-800');
+            // 2. HAPUS semua class yang bisa bikin teks jadi putih
+            link.classList.remove('text-white', 'dark:text-white');
+        });
     } else {
+// --- SAAT KEMBALI KE PALING ATAS ---
         header.classList.remove('navbar-fixed');
-    }               
+        
+        
+    }
 };
 
 // dark mode toggle
@@ -234,4 +247,71 @@ function speak(text) {
 
   window.speechSynthesis.speak(speech);
 }
+
+// blog
+async function addBlog() {
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const image = document.getElementById("image").value;
+
+  if (!title || !description) {
+    alert("Isi dulu bro 😅");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:3000/api/blogs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, description, image }),
+    });
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    // reset form
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("image").value = "";
+
+  } catch (err) {
+    alert("Server error 😢");
+  }
+}
+
+async function loadBlogs() {
+  try {
+    const res = await fetch("http://localhost:3000/api/blogs");
+    const blogs = await res.json();
+
+    const container = document.getElementById("blog-container");
+    container.innerHTML = "";
+
+    blogs.forEach((blog) => {
+      container.innerHTML += `
+        <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+            <img src="${blog.image || 'https://via.placeholder.com/400'}" class="w-full h-auto">
+            <div class="p-6">
+              <h3 class="font-bold text-xl text-slate-900 mb-2 truncate">
+                ${blog.title}
+              </h3>
+              <p class="text-base text-slate-500">
+                ${blog.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+  } catch (err) {
+    console.log("Gagal load blog");
+  }
+}
+
+loadBlogs();
 
