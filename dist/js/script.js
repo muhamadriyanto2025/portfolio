@@ -154,164 +154,164 @@ window.addEventListener("scroll", () => {
 });
 
 // musik
-const music = document.getElementById("music");
-const statusText = document.getElementById("voice-status");
+// const music = document.getElementById("music");
+// const statusText = document.getElementById("voice-status");
 
 
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+// const SpeechRecognition =
+//   window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  if (!SpeechRecognition) {
-  statusText.innerText = "Browser tidak support voice 😢";
-} else {
-  const recognition = new SpeechRecognition();
+//   if (!SpeechRecognition) {
+//   statusText.innerText = "Browser tidak support voice 😢";
+// } else {
+//   const recognition = new SpeechRecognition();
 
-  recognition.lang = "id-ID";
-  recognition.continuous = true; // denger terus
-  recognition.interimResults = false;
+//   recognition.lang = "id-ID";
+//   recognition.continuous = true; // denger terus
+//   recognition.interimResults = false;
 
-  let isListening = false;
+//   let isListening = false;
 
-  // 🚀 START setelah 1x klik
-  function startVoice() {
-    if (isListening) return;
+//   // 🚀 START setelah 1x klik
+//   function startVoice() {
+//     if (isListening) return;
 
-    recognition.start();
-    isListening = true;
+//     recognition.start();
+//     isListening = true;
 
-    statusText.innerText = "🎤 Voice aktif...";
-    console.log("Voice ON");
-  }
+//     statusText.innerText = "🎤 Voice aktif...";
+//     console.log("Voice ON");
+//   }
 
-  // 👆 WAJIB: 1x interaksi user
-  document.body.addEventListener(
-    "click",
-    () => {
-      startVoice();
-    },
-    { once: true }
-  );
+//   // 👆 WAJIB: 1x interaksi user
+//   document.body.addEventListener(
+//     "click",
+//     () => {
+//       startVoice();
+//     },
+//     { once: true }
+//   );
 
-  // 🎤 hasil suara
-recognition.onresult = (event) => {
-  const text =
-    event.results[event.results.length - 1][0].transcript.toLowerCase();
+//   // 🎤 hasil suara
+// recognition.onresult = (event) => {
+//   const text =
+//     event.results[event.results.length - 1][0].transcript.toLowerCase();
 
-  console.log("Kamu bilang:", text);
-  statusText.innerText = "🎤 " + text;
+//   console.log("Kamu bilang:", text);
+//   statusText.innerText = "🎤 " + text;
 
-  // 🛑 STOP MUSIK
-  if (text.includes("stop")) {
-    music.pause();
-    music.currentTime = 0;
+//   // 🛑 STOP MUSIK
+//   if (text.includes("stop")) {
+//     music.pause();
+//     music.currentTime = 0;
 
-    speak("Baik bos, musik dihentikan");
+//     speak("Baik bos, musik dihentikan");
 
-    recognition.start(); // ✅ NYALAIN LAGI MIC
+//     recognition.start(); // ✅ NYALAIN LAGI MIC
 
-    statusText.innerText = "⛔ Musik dihentikan";
-    return;
-  }
+//     statusText.innerText = "⛔ Musik dihentikan";
+//     return;
+//   }
 
-  // ▶️ PLAY MUSIK
-  if (text.includes("musik")) {
-    recognition.stop(); // ❗ INI KUNCI UTAMA (MATIKAN MIC)
+//   // ▶️ PLAY MUSIK
+//   if (text.includes("musik")) {
+//     recognition.stop(); // ❗ INI KUNCI UTAMA (MATIKAN MIC)
 
-    music.play().catch(() => {
-      statusText.innerText = "⚠️ Klik dulu biar bisa play audio";
-    });
+//     music.play().catch(() => {
+//       statusText.innerText = "⚠️ Klik dulu biar bisa play audio";
+//     });
 
-    speak("Baik bos, musik dijalankan");
+//     speak("Baik bos, musik dijalankan");
 
-    statusText.innerText = "🎵 Memutar musik...";
-  }
-};
+//     statusText.innerText = "🎵 Memutar musik...";
+//   }
+// };
 
-  // 🔁 auto restart kalau mati
-  recognition.onend = () => {
-    console.log("Restarting voice...");
-    recognition.start();
-  };
+//   // 🔁 auto restart kalau mati
+//   recognition.onend = () => {
+//     console.log("Restarting voice...");
+//     recognition.start();
+//   };
 
-  recognition.onerror = (err) => {
-    console.error("Voice error:", err);
-  };
-}
+//   recognition.onerror = (err) => {
+//     console.error("Voice error:", err);
+//   };
+// }
 
-function speak(text) {
-  const speech = new SpeechSynthesisUtterance(text);
-  speech.lang = "id-ID";
-  speech.rate = 1;
-  speech.pitch = 1;
-  speech.volume = 1;
+// function speak(text) {
+//   const speech = new SpeechSynthesisUtterance(text);
+//   speech.lang = "id-ID";
+//   speech.rate = 1;
+//   speech.pitch = 1;
+//   speech.volume = 1;
 
-  window.speechSynthesis.speak(speech);
-}
+//   window.speechSynthesis.speak(speech);
+// }
 
-// blog
-async function addBlog() {
-  const title = document.getElementById("title").value;
-  const description = document.getElementById("description").value;
-  const image = document.getElementById("image").value;
+// // blog
+// async function addBlog() {
+//   const title = document.getElementById("title").value;
+//   const description = document.getElementById("description").value;
+//   const image = document.getElementById("image").value;
 
-  if (!title || !description) {
-    alert("Isi dulu bro 😅");
-    return;
-  }
+//   if (!title || !description) {
+//     alert("Isi dulu bro 😅");
+//     return;
+//   }
 
-  try {
-    const res = await fetch("http://localhost:3000/api/blogs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, description, image }),
-    });
+//   try {
+//     const res = await fetch("http://localhost:3000/api/blogs", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ title, description, image }),
+//     });
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    alert(data.message);
+//     alert(data.message);
 
-    // reset form
-    document.getElementById("title").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("image").value = "";
+//     // reset form
+//     document.getElementById("title").value = "";
+//     document.getElementById("description").value = "";
+//     document.getElementById("image").value = "";
 
-  } catch (err) {
-    alert("Server error 😢");
-  }
-}
+//   } catch (err) {
+//     alert("Server error 😢");
+//   }
+// }
 
-async function loadBlogs() {
-  try {
-    const res = await fetch("http://localhost:3000/api/blogs");
-    const blogs = await res.json();
+// async function loadBlogs() {
+//   try {
+//     const res = await fetch("http://localhost:3000/api/blogs");
+//     const blogs = await res.json();
 
-    const container = document.getElementById("blog-container");
-    container.innerHTML = "";
+//     const container = document.getElementById("blog-container");
+//     container.innerHTML = "";
 
-    blogs.forEach((blog) => {
-      container.innerHTML += `
-        <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
-            <img src="${blog.image || 'https://via.placeholder.com/400'}" class="w-full h-auto">
-            <div class="p-6">
-              <h3 class="font-bold text-xl text-slate-900 mb-2 truncate">
-                ${blog.title}
-              </h3>
-              <p class="text-base text-slate-500">
-                ${blog.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      `;
-    });
+//     blogs.forEach((blog) => {
+//       container.innerHTML += `
+//         <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+//           <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+//             <img src="${blog.image || 'https://via.placeholder.com/400'}" class="w-full h-auto">
+//             <div class="p-6">
+//               <h3 class="font-bold text-xl text-slate-900 mb-2 truncate">
+//                 ${blog.title}
+//               </h3>
+//               <p class="text-base text-slate-500">
+//                 ${blog.description}
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       `;
+//     });
 
-  } catch (err) {
-    console.log("Gagal load blog");
-  }
-}
+//   } catch (err) {
+//     console.log("Gagal load blog");
+//   }
+// }
 
-loadBlogs();
+// loadBlogs();
 
